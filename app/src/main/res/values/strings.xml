@@ -2,4 +2,7 @@
     <string name="app_name">Zodiac Wiki</string>
     <string name="zodiac_name">ZodiacData</string>
     <string name="date">ZodiacData</string>
+    <string name="email">hafidhsajid@gmail.com</string>
+    <string name="author">Hafidh Sajid M.</string>
+    <string name="foto">Foto</string>
 </resources>

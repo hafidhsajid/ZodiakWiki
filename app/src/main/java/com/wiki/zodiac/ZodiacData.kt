@@ -1,15 +1,7 @@
 package com.wiki.zodiac
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import kotlinx.android.synthetic.main.main_activity.*
-
-class MainActivity : AppCompatActivity() {
-
-    private val zodiacName = arrayOf(
+object ZodiacData {
+    private val zodiacName = arrayListOf(
         "Capricon",
         "Aquarius",
         "Pisces",
@@ -23,8 +15,7 @@ class MainActivity : AppCompatActivity() {
         "Scorpio",
         "Sagitarius"
     )
-
-    private val zodiacDate = arrayOf(
+    private val zodiacDate = arrayListOf(
         "22 December - 19 January",
         "20 January - 18 February",
         "19 February - 20 March",
@@ -38,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         "23 October - 21 November",
         "22 November - 21 December"
     )
-    private val zodiacSebutan = arrayOf(
+    private val zodiacSebutan = arrayListOf(
         "The Goat ",
         "The Water Bearer",
         "The Fishes",
@@ -52,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         "The Scorpion",
         "The Archer"
     )
-    private val zodiacDetail = arrayOf(
+    private val zodiacDetail = arrayListOf(
         "22 December - 19 January",
         "20 January - 18 February",
         "19 February - 20 March",
@@ -81,33 +72,18 @@ class MainActivity : AppCompatActivity() {
         R.drawable.duabelas
     )
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
-//        if (savedInstanceState == null) {
-//            supportFragmentManager.beginTransaction()
-//                .replace(R.layout.main_activity, MainFragment.newInstance())
-//                .commitNow()
-//        }
-        listView.adapter =
-            myAdapter(zodiacName, zodiacDate, zodiacSebutan, zodiacDetail, zodiacImage)
-
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.getItemId()
-        if (id == R.id.btnSaya) {
-            val new = Intent(this@MainActivity, About::class.java)
-            startActivity(new)
+    val listData: ArrayList<Zodiac>
+        get() {
+            val list = arrayListOf<Zodiac>()
+            for (position in zodiacName.indices) {
+                val zodiac = Zodiac()
+                zodiac.name = zodiacName[position]
+                zodiac.detail = zodiacDetail[position]
+                zodiac.date = zodiacDate[position]
+                zodiac.sebutan = zodiacSebutan[position]
+                zodiac.photo = zodiacImage[position]
+                list.add(zodiac)
+            }
+            return list
         }
-        return super.onOptionsItemSelected(item)
-    }
-
-
 }
-
